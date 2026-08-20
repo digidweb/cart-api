@@ -2,64 +2,67 @@
 
 # Shopping Cart API
 
-API REST para gerenciamento de carrinho de compras de e-commerce.
+REST API for managing e-commerce shopping carts.
 
-## 🛠 Tecnologias
+## 🛠 Technologies
 
-- Ruby 3.3.1
-- Rails 7.1.3.2
-- PostgreSQL 16
-- Redis 7.0.15
-- Sidekiq
-- RSpec
+* Ruby 3.3.1
+* Rails 7.1.3.2
+* PostgreSQL 16
+* Redis 7.0.15
+* Sidekiq
+* RSpec
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
-- Docker e Docker Compose (recomendado)
-- Ou: Ruby, Rails, PostgreSQL e Redis instalados localmente
+* Docker and Docker Compose (recommended)
+* Or: Ruby, Rails, PostgreSQL, and Redis installed locally
 
-## 🚀 Como executar
+## 🚀 Getting Started
 
-### Com Docker (Recomendado)
+### With Docker (Recommended)
+
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/digidweb/cart_api
 cd cart-api
 
-# Inicie os containers
+# Start the containers
 docker-compose up --build
 
-# Em outro terminal, crie o banco e rode as migrations
+# In another terminal, create the database and run migrations
 docker-compose exec web rails db:create db:migrate
 
-# Crie alguns produtos para testar
+# Create some products for testing
 docker-compose exec web rails console
-Product.create(name: "Produto 1", price: 10.99)
-Product.create(name: "Produto 2", price: 25.50)
+Product.create(name: "Product 1", price: 10.99)
+Product.create(name: "Product 2", price: 25.50)
 ```
 
-### Sem Docker
+### Without Docker
+
 ```bash
-# Instale as dependências
+# Install dependencies
 bundle install
 
-# Configure o banco
+# Set up the database
 rails db:create db:migrate
 
-# Inicie o Redis (em um terminal)
+# Start Redis (in one terminal)
 redis-server
 
-# Inicie o Sidekiq (em outro terminal)
+# Start Sidekiq (in another terminal)
 bundle exec sidekiq
 
-# Inicie o Rails (em outro terminal)
+# Start Rails (in another terminal)
 bundle exec rails server
 ```
 
 ## 📝 Endpoints
 
-### 1. Adicionar produto ao carrinho
-```bash
+### 1. Add a product to the cart
+
+```http
 POST /cart
 Content-Type: application/json
 
@@ -69,13 +72,15 @@ Content-Type: application/json
 }
 ```
 
-### 2. Listar carrinho atual
-```bash
+### 2. Get the current cart
+
+```http
 GET /cart
 ```
 
-### 3. Atualizar quantidade
-```bash
+### 3. Update product quantity
+
+```http
 POST /cart/add_item
 Content-Type: application/json
 
@@ -85,29 +90,32 @@ Content-Type: application/json
 }
 ```
 
-### 4. Remover produto
-```bash
+### 4. Remove a product
+
+```http
 DELETE /cart/1
 ```
 
-## 🧪 Testes
+## 🧪 Tests
+
 ```bash
-# Rodar todos os testes
+# Run all tests
 bundle exec rspec
 
-# Com detalhes
+# Run with detailed output
 bundle exec rspec --format documentation
 
-# Com cobertura
+# Generate coverage report
 bundle exec rspec --format html --out coverage/index.html
 ```
 
 ## 📦 Jobs
 
-O sistema possui um job que roda automaticamente:
-- **A cada hora**: marca carrinhos inativos (3h+) como abandonados
-- **A cada hora**: remove carrinhos abandonados há mais de 7 dias
+The system includes a background job that runs automatically:
 
-## 📄 Licença
+* **Every hour:** marks inactive carts (3+ hours) as abandoned
+* **Every hour:** removes carts that have been abandoned for more than 7 days
 
-Este projeto foi desenvolvido como parte de um desafio técnico.
+## 📄 License
+
+This project was developed as part of a technical challenge.
