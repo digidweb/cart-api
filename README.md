@@ -1,8 +1,8 @@
 # Cart API 🛒
 
-> A RESTful e-commerce cart API built with Ruby on Rails, PostgreSQL, Redis, and Sidekiq.
+> A REST API for e-commerce shopping cart management
 
-Cart API is a backend application that implements the core functionality of an e-commerce shopping cart.
+Cart API is a backend application that implements the core functionality of an e-commerce shopping cart built with Ruby on Rails, PostgreSQL, Redis, and Sidekiq.
 
 The project focuses on **REST API design, relational data modeling, business rules, automated testing, and asynchronous background processing** using a realistic shopping cart domain.
 
@@ -23,16 +23,16 @@ The project focuses on **REST API design, relational data modeling, business rul
 
 **Backend**
 
-* Ruby 3.3.1
-* Ruby on Rails 7.1.3.2
+* Ruby
+* Rails
 * Active Record
 * REST API
 
 **Database & Background Processing**
 
-* PostgreSQL 16
-* Redis 7
-* Sidekiq 7
+* PostgreSQL
+* Redis 
+* Sidekiq
 * Sidekiq Cron
 
 **Testing & Quality**
@@ -97,7 +97,7 @@ Product
 CartItem
    │
    ▼
-Cart
+ Cart
 ```
 
 ### Cart
@@ -247,7 +247,7 @@ The API will be available at:
 http://localhost:3000
 ```
 
-### Docker
+### Running with DockerDocker
 
 Alternatively:
 
